@@ -71,10 +71,11 @@ int main() {
         out vec4 fragColor;
 
         in vec3 vColor;
+        uniform vec4 uColor;
 
         void main()
         {
-            fragColor = vec4(vColor, 1.0);
+            fragColor = vec4(vColor, 1.0)*uColor;
         }
     )";
     
@@ -108,9 +109,16 @@ int main() {
     
     std::vector<float> vertices = 
     {
-        0.0f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
-        -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
-        0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f
+        0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+        -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+        0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f
+    };
+    
+    std::vector<unsigned int> indices = 
+    {
+        0, 1, 2,
+        2, 3, 0
     };
     
     GLuint VBO;
@@ -119,10 +127,17 @@ int main() {
     glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     
+    GLuint EBO;
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    
     GLuint VAO;
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     
     glVertexAttribPointer(0, 3, GL_FLOAT, false, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
@@ -133,6 +148,8 @@ int main() {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
     
+    GLuint uColorLoc = glGetUniformLocation(shaderProgram, "uColor");
+    
     //keep running 
     while (!glfwWindowShouldClose(window)) {
         //rendering commands here(back buffer)
@@ -140,8 +157,10 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT);
         
         glUseProgram(shaderProgram);
+        glUniform4f(uColorLoc, 1.0f, 1.0f, 1.0f, 1.0f); 
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        //glBindVertexArray(0);
         
         //show frame and check for events(front buffer)
         glfwSwapBuffers(window);
