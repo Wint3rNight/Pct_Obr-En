@@ -1,1 +1,0 @@
-/usr/bin/cc -fPIC -shared -Wl,--dependency-file=CMakeFiles/glew.dir/link.d -Wl,-soname,libGLEW.so.2.1 -o ../lib/libGLEW.so.2.1.0 CMakeFiles/glew.dir/__/__/src/glew.c.o  /usr/lib/libGL.so /usr/lib/libGLU.so

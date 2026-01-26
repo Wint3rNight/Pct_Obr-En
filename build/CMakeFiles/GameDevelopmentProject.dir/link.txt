@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/GameDevelopmentProject.dir/link.d CMakeFiles/GameDevelopmentProject.dir/source/main.cpp.o -o GameDevelopmentProject  glfw_build/src/libglfw3.a lib/libGLEW.a /usr/lib/librt.a -lm -ldl /usr/lib/libGL.so /usr/lib/libGLU.so
