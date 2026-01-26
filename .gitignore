@@ -1,0 +1,10 @@
+# IDE files
+.idea/
+cmake-build-debug/
+build/
+*.user
+
+# Compiled files
+*.o
+*.a
+*.so
