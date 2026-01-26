@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/winter/Documents/Pct_Obr En/build/cmake_install.cmake",
+		"/home/winter/Documents/Pct_Obr En/build/glfw_build/cmake_install.cmake",
+		"/home/winter/Documents/Pct_Obr En/build/glfw_build/src/cmake_install.cmake",
+		"/home/winter/Documents/Pct_Obr En/build/glfw_build/docs/cmake_install.cmake",
+		"/home/winter/Documents/Pct_Obr En/build/glew_build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
