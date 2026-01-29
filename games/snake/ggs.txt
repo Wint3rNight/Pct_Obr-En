@@ -356,9 +356,9 @@ void UpdateGame(float deltaTime)
                 SpawnFruit();
 
                 //increase speed every 5 fruits
-                if (score % 50 == 0 && snakeSpeed > 0.05f)
+                if (score % 20 == 0 && snakeSpeed > 0.04f)
                 {
-                    snakeSpeed -= 0.01f;
+                    snakeSpeed *= 0.90f;
                 }
             }
             else
@@ -680,6 +680,7 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
         }
     }
 }
+
 
 
 //Lo Siento, Wilson
