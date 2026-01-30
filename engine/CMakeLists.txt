@@ -8,6 +8,8 @@ set(PROJECT_SOURCE_FILES
     source/Application.cpp
     source/Application.h
         source/ene.h
+        source/input/InputManager.h
+        source/input/InputManager.cpp
 )
 
 include_directories(source)
