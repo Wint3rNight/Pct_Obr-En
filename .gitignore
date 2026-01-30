@@ -1,10 +1,11 @@
-# IDE files
+# IDE and Build Junk
 .idea/
 cmake-build-debug/
 build/
-*.user
+engine/cmake-build-debug/
 
-# Compiled files
-*.o
-*.a
-*.so
+# OS specific
+.DS_Store
+
+# Temporary files
+*.user
